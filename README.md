@@ -1,44 +1,56 @@
 # reinforcement-learning-hands-on
 
-## 学習用セット
+## Installation
 
-```
-wget https://github.com/icoxfog417/techcircle_openai_handson/archive/master.zip
-unzip master
-```
+- docker
+- docker for Mac
+- Xquartz (under 2.7.8)
+- socat
 
-## pull or build
+### XQuartz
 
-```
-docker pull wtnbmsr/rl-hands-on
-docker build . -t rl-hands-on
-```
+Make sure your pre-installed version is under 2.7.8.
 
-## GUI 表示
+[Download Xquartz 2.7.8](https://www.xquartz.org/releases/XQuartz-2.7.8.html)
 
-ポート転送版
+After installation, restart your machine.
+
+### socat
 
 ```
 brew install socat
-brew install caskroom/cask/brew-eask
-brew cask install xquartz
+```
+
+## Usage
+
+### Prepare X Window
+
+Type following commands in another console.
+
+```
 open -a XQuartz
-
-# 別ターミナルで
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
-
-# 起動
-docker run -e DISPLAY=172.19.193.27:0 -v $(pwd):/work rl-hands-on /bin/bash
+...
 ```
 
-## GUI 表示
-
-ソケット共有版
+### Run sample application
 
 ```
-# 起動
-docker run -it \
-  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v $(pwd):/work \
-  rl-hands-on /bin/bash
+# pull container
+docker pull chck/rl-hands-on
+
+# or build container, if needed
+#docker build . -t rl-hands-on
+
+# check your ip address
+IP_ADDR=
+IP_ADDR=$(ifconfig en0 | grep "inet " | awk '{print $2};')
+echo $IP_ADDR
+
+# run container and
+docker run -it -e DISPLAY=${IP_ADDR}:0 -v $(pwd):/work chck/rl-hands-on /bin/bash
+
+# run sample application on container console
+python ...  # FIXME
 ```
+
