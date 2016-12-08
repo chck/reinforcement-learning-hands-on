@@ -1,0 +1,4 @@
+pandas==0.19.1
+gym==0.5.6
+pillow==3.4.2
+chainer==1.18.0
