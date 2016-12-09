@@ -54,3 +54,7 @@ docker run -it -e DISPLAY=${IP_ADDR}:0 -v $(pwd):/work chck/rl-hands-on /bin/bas
 python ...  # FIXME
 ```
 
+## References
+
+- https://github.com/icoxfog417/techcircle_openai_handson/
+ - This hands-on had a great influence on me!!
