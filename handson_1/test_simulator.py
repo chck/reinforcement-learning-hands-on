@@ -3,7 +3,7 @@
 import gym
 import time
 
-env = gym.make('cartpole-v0')
+env = gym.make('CartPole-v0')
 env.reset()  # 初期値
 for i in range(1000):
     env.render()
